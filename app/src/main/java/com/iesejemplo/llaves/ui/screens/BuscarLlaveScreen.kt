@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,7 +29,7 @@ import com.iesejemplo.llaves.ui.theme.AppLlavesTheme
 
 @Composable
 fun BuscarLlaveScreen() {
-    var searchQuery by remember { mutableStateOf("") }
+    var searchQuery by rememberSaveable { mutableStateOf("") }
     val screenBackground = Color(0xFF0F264A)
     val orangeCircle = Color(0xFFF2994A)
 
@@ -98,6 +99,7 @@ fun BuscarLlaveScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
+                .statusBarsPadding()
                 .padding(horizontal = 24.dp, vertical = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -139,7 +141,7 @@ fun BuscarLlaveScreen() {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Static NFC Concentric circles (no animation)
+            // Static NFC Concentric circles
             Box(
                 modifier = Modifier
                     .size(260.dp)
@@ -164,7 +166,7 @@ fun BuscarLlaveScreen() {
                         .size(140.dp)
                         .border(1.dp, orangeCircle.copy(alpha = 0.6f), CircleShape)
                 )
-                // Inner orange circle (static)
+                // Inner orange circle
                 Box(
                     modifier = Modifier
                         .size(88.dp)
